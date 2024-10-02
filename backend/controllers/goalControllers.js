@@ -9,6 +9,9 @@ export const getGoals = (req, res, next) => {
 export const getGoal = (req, res, next) => {
   const id = req.params.id;
   res.status(200).json({ msg: `Post with the id: ${id} can not be found` });
+  const error = new Error(`Post with the id: ${id} can not be found`);
+  error.status = 404;
+  return next(error);
 };
 
 // @desc Delete goal
